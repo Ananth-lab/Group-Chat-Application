@@ -1,0 +1,96 @@
+#error {
+    color: red;
+    width: 50%;
+    margin: auto;
+    padding: auto;
+    text-align: center;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	color: #4d5a66;
+	background-color :rgba(3, 3, 123, 0.861);
+	background-size: cover;
+}
+
+h1 {
+	text-align: center;
+	margin: 0.5rem auto;
+	font-weight: 800;
+	font-size: 40px;
+	color: #000000;
+	padding-bottom: 1rem;
+}
+
+form{
+	max-width :500px;
+	margin : 2rem auto;
+	background-color: aliceblue;
+	border-radius: .5rem;
+	background-size: cover;
+}
+
+p {
+	text-align: center;
+}
+
+#switch{
+	display: block;
+	color:rgba(3, 3, 123, 0.861);
+	text-align: center;
+	padding :1rem;
+}
+
+
+
+input{
+    display: block;
+	font-size: 16px;
+    width: 50%;
+    margin: 2rem auto;
+	height: 2rem;
+}
+
+.sub-button{
+	font-size: 16px;
+	display: block;
+	width: 30%;
+	margin:  20px auto;
+	padding: 6px 6px;
+	border-radius: 5px;
+	color:  #ffffff;
+	background-color: rgba(0, 0, 211, 0.861);
+	cursor: pointer;
+	text-align: center;
+	transition: all 250ms;
+}
+
+
+a {
+    list-style: none;
+    color: rgb(255, 255, 255);
+}
+
+
+.footer{
+	margin : auto;
+	max-width : 500px;
+	background-color: aliceblue;
+	text-align: center;
+	border-radius: .5rem;
+}
+.footer-links{
+	padding:1%;
+	padding: 2rem 0;
+}
+li{
+	display:inline;
+	padding :1rem;
+	
+}
+img{
+	width : 3rem;
+	height : 3rem;
+
+}
+
