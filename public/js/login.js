@@ -10,10 +10,10 @@ loginBtn.addEventListener("click", (e) => {
         password
     };
     axios.post("http://localhost:3000/user/login", userCreds)
-    .then(() => {
-        
+    .then((res) => {
+        alert(res.data.message)
     })
     .catch((err) => {
-
+        errorPara.textContent = err.response.data.message
     })
 })
