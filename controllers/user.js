@@ -23,3 +23,13 @@ exports.signIn = async (req, res, next) => {
         return res.status(504).json(error.message)
     }
 }
+
+
+exports.logIn = async (req, res, next) => {
+    try {
+        console.log("Hi")
+    }
+    catch(error){
+
+    }
+}

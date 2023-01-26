@@ -6,20 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
-    <title>Group chat</title>
+    <title>Login</title>
 </head>
 
 <body>
-    <form action="submit" method = "POST">
-        <h1>Signup</h1>
-        <p>Please fill this form to create an account</p>
-        <input type = "text" id = "uname" name = "uname" required="required" placeholder="name">
-        <input type = "number" id = "cnumber" name = "cnumber" required="required" placeholder="phone number">
-        <input type = "email" id = "email"  name = "email" required="required" placeholder="Email">
-        <input type = "password" id = "password" name = "password" required="required" placeholder="password">
-        <button type = "submit" id = "signUp-btn" class="sub-button">Sign Up</button>
+    <form method = "POST">
+        <h1>Login</h1>
+        <input type = "email" id = "email" name = "email" required="required" placeholder="Email">
+        <input type = "password" id = "password" name = "password" required="required" placeholder="Password">
+        <button id = "login-btn" class="sub-button">Login</button>
+        <a href = "./forgot-password.html" id = "switch" class="forgot-password-a">Forgot password</a>
         <p id = "error"></p>
-        <a href="./login.html"  id = "switch">Existing User - Login</a>
+        <a href="./signup.html" id = "switch">New User - Sign Up</a>
     </form>
     <footer class="footer">
         <ul class = "footer-links">
@@ -31,6 +29,6 @@
     </footer>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../js/signup.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>

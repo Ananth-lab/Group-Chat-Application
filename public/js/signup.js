@@ -1,7 +1,8 @@
-const subBtn = document.querySelector("#signUp-btn");
-const errorPara = document.querySelector("#error")
+const signInBtn = document.querySelector("#signUp-btn");
+const errorPara = document.querySelector("#error");
 
-subBtn.addEventListener("click", async (e) =>{
+
+signInBtn.addEventListener("click", (e) =>{
     e.preventDefault();
     const username = document.querySelector("#uname").value;
     const phonenumber  = document.querySelector("#cnumber").value;
@@ -15,9 +16,13 @@ subBtn.addEventListener("click", async (e) =>{
     };
     axios.post("http://localhost:3000/user/signin", userDetails)
     .then(res => {
-        alert(res.data.message)
+        alert(res.data.message);
+        window.location = "./login.html"
     })
     .catch((err) => {
         errorPara.innerText = err.response.data
     })
-})
+});
+
+
+
