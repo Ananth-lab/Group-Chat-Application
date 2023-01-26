@@ -11,6 +11,7 @@ loginBtn.addEventListener("click", (e) => {
     };
     axios.post("http://localhost:3000/user/login", userCreds)
     .then((res) => {
+        localStorage.setItem("token", res.data.token)
         alert(res.data.message);
         window.location = "./groupchat.html"
     })

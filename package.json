@@ -8,7 +8,8 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.0.1",
     "nodemon": "^2.0.20",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "socket.io": "^4.5.4"
   },
   "name": "group-chat",
   "version": "1.0.0",
