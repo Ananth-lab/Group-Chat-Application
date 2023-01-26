@@ -11,7 +11,8 @@ loginBtn.addEventListener("click", (e) => {
     };
     axios.post("http://localhost:3000/user/login", userCreds)
     .then((res) => {
-        alert(res.data.message)
+        alert(res.data.message);
+        window.location = "./groupchat.html"
     })
     .catch((err) => {
         errorPara.textContent = err.response.data.message
