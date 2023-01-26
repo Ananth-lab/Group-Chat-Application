@@ -1,15 +1,15 @@
 #error {
-    color: red;
-    width: 50%;
-    margin: auto;
-    padding: auto;
-    text-align: center;
+	color: red;
+	width: 50%;
+	margin: auto;
+	padding: auto;
+	text-align: center;
 }
 
 body {
 	font-family: 'Montserrat', sans-serif;
 	color: #4d5a66;
-	background-color :rgba(3, 3, 123, 0.861);
+	background-color: rgba(3, 3, 123, 0.861);
 	background-size: cover;
 }
 
@@ -22,9 +22,10 @@ h1 {
 	padding-bottom: 1rem;
 }
 
-form{
-	max-width :500px;
-	margin : 2rem auto;
+form {
+	max-width: 500px;
+	margin: 2rem auto;
+	margin-bottom: 0px;
 	background-color: aliceblue;
 	border-radius: .5rem;
 	background-size: cover;
@@ -35,31 +36,31 @@ p {
 	font-size: large;
 }
 
-#switch{
+#switch {
 	display: block;
-	color:rgba(3, 3, 123, 0.861);
+	color: rgba(3, 3, 123, 0.861);
 	text-align: center;
-	padding :1rem;
+	padding: 1rem;
 }
 
 
 
-input{
-    display: block;
+input {
+	display: block;
 	font-size: 16px;
-    width: 50%;
-    margin: 2rem auto;
+	width: 50%;
+	margin: 2rem auto;
 	height: 2rem;
 }
 
-.sub-button{
+.sub-button {
 	font-size: 16px;
 	display: block;
 	width: 30%;
-	margin:  20px auto;
+	margin: 20px auto;
 	padding: 6px 6px;
 	border-radius: 5px;
-	color:  #ffffff;
+	color: #ffffff;
 	background-color: rgba(0, 0, 211, 0.861);
 	cursor: pointer;
 	text-align: center;
@@ -68,57 +69,88 @@ input{
 
 
 a {
-    list-style: none;
-    color: rgb(255, 255, 255);
+	list-style: none;
+	color: rgb(255, 255, 255);
 }
 
 
-.footer{
-	margin : auto;
-	max-width : 500px;
+.footer {
+	margin: auto;
+	max-width: 500px;
 	background-color: aliceblue;
 	text-align: center;
 	border-radius: .5rem;
 }
-.footer-links{
-	padding:1%;
+
+.footer-links {
+	padding: 1%;
 	padding: 2rem 0;
 }
-li{
-	display:inline;
-	padding :1rem;
-	
-}
-img{
-	width : 3rem;
-	height : 3rem;
+
+li {
+	display: inline;
+	padding: 1rem;
 
 }
 
-#chat-heading{
+img {
+	width: 3rem;
+	height: 3rem;
+
+}
+
+#chat-heading {
 	color: #ffffff;
 }
 
-#chat-container {
+.chat-container {
 	max-width: 70%;
-	text-align: center;
+	background-color: aliceblue;
+	border-radius: 10px;
 	margin: auto;
+	height: 70vh;
+	overflow-y: auto;
 }
 
-#send-container{
+.message {
+	background-color: rgb(0, 217, 255);
+	width: 20%;
+	border: 2px solid rgb(2, 0, 107);
+	border-radius: 5px;
+	padding: 10px;
+	margin: 15px;
+
+}
+
+.left {
+	float: left;
+	clear: both;
+}
+
+.right {
+	float: right;
+	clear: both;
+}
+
+
+
+#send-message-container{
+	display: block;
 	text-align: center;
-	position: relative;
-	top: 30rem;
-	margin : auto;
+	max-width: 70%;
+	margin: auto;
+	width: 100;
+	border-radius: 0rem;
+	background-color: inherit;
 }
-#send-message{
+
+#messageInp{
+	margin: auto;
+	border-radius: .5rem;
+	width :93%;
 	display: inline-block;
-	width : 60%;
-	margin: 0;
-	padding : 0;
-	height: 1.5rem;
 }
-#send-message-btn {
-	display:inline-block;
-	height: 1.8rem;
+
+.send-message-btn{
+	height: 2.2rem;
 }
