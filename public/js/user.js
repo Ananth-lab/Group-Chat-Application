@@ -1,4 +1,5 @@
 const subBtn = document.querySelector("#signUp-btn");
+const errorPara = document.querySelector("#error")
 
 subBtn.addEventListener("click", async (e) =>{
     e.preventDefault();
@@ -14,9 +15,9 @@ subBtn.addEventListener("click", async (e) =>{
     };
     axios.post("http://localhost:3000/user/signin", userDetails)
     .then(res => {
-        alert("Signin suucessful")
+        alert(res.data.message)
     })
-    .catch(() => {
-        alert("user already exists")
+    .catch((err) => {
+        errorPara.innerText = err.response.data
     })
 })

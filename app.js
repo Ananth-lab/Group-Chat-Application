@@ -14,7 +14,11 @@ const sequelize = require("./utils/database")
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin : "*",
+    method : ["GET","POST","DELETE", "PUT"],
+    credentials : true
+}));
 
 dotenv.config();
 

@@ -16,7 +16,7 @@ exports.signIn = async (req, res, next) => {
                 email: req.body.email,
                 password: hash
             })
-            return res.status(201).json({ message: "user account created", user })
+            return res.status(201).json({ message: "Signin successful! Please login", user })
         })
     }
     catch (error) {
