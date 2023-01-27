@@ -112,25 +112,29 @@ img {
 	overflow-y: auto;
 }
 
-.message {
+
+.message-left {
 	background-color: rgb(0, 217, 255);
 	width: 20%;
 	border: 2px solid rgb(2, 0, 107);
 	border-radius: 5px;
 	padding: 10px;
 	margin: 15px;
-
-}
-
-.left {
 	float: left;
 	clear: both;
 }
 
-.right {
+.message-right {
+	background-color: rgb(0, 217, 255);
+	width: 20%;
+	border: 2px solid rgb(2, 0, 107);
+	border-radius: 5px;
+	padding: 10px;
+	margin: 15px;
 	float: right;
 	clear: both;
 }
+
 
 
 

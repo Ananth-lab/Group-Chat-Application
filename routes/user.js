@@ -14,4 +14,6 @@ routes.post("/login",userController.logIn);
 
 routes.post("/chat",userAuthenticate.authenticate, groupchatController.chat);
 
+routes.get("/get-chat",userAuthenticate.authenticate, groupchatController.getChat);
+
 module.exports = routes;
