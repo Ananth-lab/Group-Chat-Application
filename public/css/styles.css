@@ -158,3 +158,21 @@ img {
 .send-message-btn{
 	height: 2.2rem;
 }
+
+.name-span{
+	display : block;
+	text-align: left;
+	font-size: small;
+	margin :0;
+	padding :0;
+	color: red;
+}
+
+.time-span{
+	display: block;
+	text-align: right;
+	font-size: small;
+	margin :0;
+	padding :0;
+	color :black
+}
