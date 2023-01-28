@@ -122,10 +122,11 @@ img {
 	margin: 15px;
 	float: left;
 	clear: both;
+	overflow: hidden;
 }
 
 .message-right {
-	background-color: rgb(0, 217, 255);
+	background-color: rgb(64, 255, 0);
 	width: 20%;
 	border: 2px solid rgb(2, 0, 107);
 	border-radius: 5px;
@@ -133,6 +134,7 @@ img {
 	margin: 15px;
 	float: right;
 	clear: both;
+	overflow: hidden;
 }
 
 
@@ -163,7 +165,7 @@ img {
 	display : block;
 	text-align: left;
 	font-size: small;
-	margin :0;
+	margin :1px,0,0,0;
 	padding :0;
 	color: red;
 }

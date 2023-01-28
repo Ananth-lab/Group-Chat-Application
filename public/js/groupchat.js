@@ -8,11 +8,36 @@ const token = localStorage.getItem("token");
 
 const currentUserId = localStorage.getItem("userId");
 
+let localChat = [];
+
+let lastMsgId;
+
 function getMessages() {
-    axios.get("http://localhost:3000/user/get-chat", { headers: { "authorization": token } })
+  let messages = JSON.parse(localStorage.getItem("messages"));
+  if(messages == undefined || messages.length == 0){
+    lastMsgId = 0;
+  }
+  else {
+    lastMsgId = messages[messages.length - 1].id;
+  }
+    axios.get(`http://localhost:3000/user/get-chat?lastmsgid=${lastMsgId}`, { headers: { "authorization": token } })
       .then(res => {
+        const resArray = res.data.chatList;
+
+        if(messages){
+          localChat = messages.concat(resArray)
+        }
+        else {
+          localChat = localChat.concat(resArray)
+        }
+
+        localChat = localChat.slice(localChat.legth - 10);
+
+        const localStorageMessages = JSON.stringify(localChat);
+        localStorage.setItem('messages', localStorageMessages);
+
         chatContainer.innerHTML = '';
-        res.data.chatList.forEach(element => {
+        localChat.forEach(element => {
           const date = new Date(element.createdAt);
           const timeString = date.toLocaleTimeString(); 
           if (currentUserId == element.userId) {
@@ -50,7 +75,9 @@ function getMessages() {
 
 window.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
-    setInterval(getMessages, 1000);
+    //setInterval(getMessages, 1000);
+    getMessages();
+
 });
   
 
@@ -62,8 +89,7 @@ sendBtn.addEventListener("click" , (e) => {
     }
     axios.post("http://localhost:3000/user/chat", message, {headers : {"authorization" : token}})
     .then(res => {
-      localStorage.setItem("userId", res.data.id);
-      getMessages()
+      getMessages();
       document.querySelector("#messageInp").value = "";
     })
     .catch(err => {

@@ -5,10 +5,10 @@ const User = require("../models/user");
 
 exports.chat = async (req, res, next) => {
     try {
-        await req.user.createChat({
+        const currentChat = await req.user.createChat({
             chat: req.body.msgInp
         })
-        return res.status(201).json({ message: "sent successfully", success: true })
+        return res.status(201).json({ currentChat, message: "sent successfully", success: true,  })
     }
     catch (error) {
         return res.status(504).json({ message: "something went wrong", success: true })
@@ -19,7 +19,7 @@ exports.chat = async (req, res, next) => {
 
 exports.getChat = async (req, res, next) => {
     try {
-        const chatList = await Chat.findAll({
+        let chatList = await Chat.findAll({
             include: [
               {
                 model: User,
@@ -27,10 +27,11 @@ exports.getChat = async (req, res, next) => {
               }
             ]
           });
+        chatList = chatList.slice(req.query.lastmsgid, chatList.length);
         return res.status(200).json({chatList, message: "messages delivered successfully", success: true})
     }
     catch (error) {
         console.log(error)
-        return res.status(504).json({ message: error, success: true })
+        return res.status(504).json({ message: error, success: false })
     }
 }
