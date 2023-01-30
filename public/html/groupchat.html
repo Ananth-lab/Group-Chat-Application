@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,28 @@
     <link rel="stylesheet" href="../css/styles.css">
     <title>Group chat</title>
 </head>
+
 <body>
     <h1 id="chat-heading">Group Chat</h1>
-    <div class="chat-container">
+    <div class="container-main">
+        <div class="group-container">
+            <h3>Groups</h3>
+            <button class = "group-it add-group"> Create new group </button>
+            <button class = "group-it show-groups">Join Groups</button>
+            <ul></ul>
+        </div>
+        <div class="chat-container">
+        </div>
     </div>
+
     <div class="send-message">
-        <form action = "#" id = "send-message-container">
-            <input type = "text" name = "messageInp" id = "messageInp">
+        <form action="#" id="send-message-container">
+            <input type="text" name="messageInp" id="messageInp">
             <button class="send-message-btn">Send</button>
         </form>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../js/groupchat.js"></script>
 </body>
+
 </html>

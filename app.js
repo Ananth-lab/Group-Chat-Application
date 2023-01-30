@@ -12,7 +12,9 @@ const User = require("./models/user");
 
 const Chat = require("./models/chat");
 
-const sequelize = require("./utils/database")
+const Group = require("./models/group")
+
+const sequelize = require("./utils/database");
 
 const app = express();
 
@@ -28,12 +30,16 @@ app.use(bodyParser.json());
 
 app.use('/user', userRoutes);
 
-User.hasMany(Chat, {
-    foreignKey: 'userId',
-    onDelete: 'CASCADE',
-});
+Chat.belongsToMany(User, { through: 'chatuser', foreignKey: 'chatId' });
+User.belongsToMany(Chat, { through: 'chatuser', foreignKey: 'userId' });
 
-Chat.belongsTo(User)
+
+Group.belongsToMany(Chat, { through: 'groupchat' });
+Chat.belongsToMany(Group, { through: 'groupchat' });
+
+User.belongsToMany(Group, { through: 'usergroup', foreignKey: 'userId' });
+Group.belongsToMany(User, { through: 'usergroup', foreignKey: 'groupId' });
+
 
 sequelize.sync()
     .then(() => {

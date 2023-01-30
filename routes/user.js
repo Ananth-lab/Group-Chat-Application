@@ -16,4 +16,13 @@ routes.post("/chat",userAuthenticate.authenticate, groupchatController.chat);
 
 routes.get("/get-chat",userAuthenticate.authenticate, groupchatController.getChat);
 
+routes.get("/get-group",userAuthenticate.authenticate, groupchatController.getGroup);
+
+routes.use("/add-group",userAuthenticate.authenticate, groupchatController.addGroup);
+
+routes.get("/get-all-groups",userAuthenticate.authenticate, groupchatController.getAllGroups);
+
+routes.post("/join-group",userAuthenticate.authenticate, groupchatController.joinGroup);
+
+
 module.exports = routes;

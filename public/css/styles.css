@@ -103,22 +103,50 @@ img {
 	color: #ffffff;
 }
 
+.container-main {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .chat-container {
-	max-width: 70%;
-	background-color: aliceblue;
+	width: 60%;
+	background-image: linear-gradient(rgb(0, 0, 0), rgb(26, 17, 17));
+	color : white;
+	border: 2px solid black;
 	border-radius: 10px;
-	margin: auto;
-	height: 70vh;
 	overflow-y: auto;
+	flex-shrink: 0;
+}
+h3{
+	text-align: center;
+	color: black;
+}
+
+.group-container {
+	background-image: linear-gradient(rgb(105, 95, 214), rgb(7, 158, 192));
+	border-radius: 10px;
+	width: 20%;
+	overflow-y: auto;
+	flex-shrink: 0;
+	text-align: center;
+}
+
+.chat-container,
+.group-container {
+	height: 70vh;
 }
 
 
+
+
 .message-left {
-	background-color: rgb(0, 217, 255);
+	background-color: rgb(0, 136, 255);
 	width: 20%;
-	border: 2px solid rgb(2, 0, 107);
-	border-radius: 5px;
+	border-radius: 8px;
 	padding: 10px;
+	font-size: smaller;
 	margin: 15px;
 	float: left;
 	clear: both;
@@ -126,21 +154,19 @@ img {
 }
 
 .message-right {
-	background-color: rgb(64, 255, 0);
+	background-color: rgb(0, 136, 255);
 	width: 20%;
-	border: 2px solid rgb(2, 0, 107);
-	border-radius: 5px;
+	border-radius: 8px;
 	padding: 10px;
 	margin: 15px;
 	float: right;
 	clear: both;
+	font-size: smaller;
 	overflow: hidden;
 }
 
 
-
-
-#send-message-container{
+#send-message-container {
 	display: block;
 	text-align: center;
 	max-width: 70%;
@@ -150,31 +176,73 @@ img {
 	background-color: inherit;
 }
 
-#messageInp{
+#messageInp {
 	margin: auto;
 	border-radius: .5rem;
-	width :93%;
+	width: 93%;
 	display: inline-block;
 }
 
-.send-message-btn{
+.send-message-btn {
 	height: 2.2rem;
 }
 
-.name-span{
-	display : block;
+.name-span {
+	display: block;
 	text-align: left;
 	font-size: small;
-	margin :1px,0,0,0;
-	padding :0;
+	padding: 0;
+	margin :0;
 	color: red;
 }
 
-.time-span{
+.time-span {
 	display: block;
 	text-align: right;
 	font-size: small;
-	margin :0;
-	padding :0;
-	color :black
+	margin: 0;
+	padding: 0;
+	color: black
+}
+
+.group-list {
+	width: 90%;
+	height : 1.5rem;
+	margin-bottom: .5rem;
+	font-size: medium;
+	background-color: inherit;
+	cursor: pointer;
+	border :2px solid black;
+	overflow: hidden;
+}
+
+
+.show-group-element{
+	width: 90%;
+	height : 1.5rem;
+	margin : 0;
+	padding:0;
+	display: block;
+	color : white;
+	font-size: medium;
+	background-color: inherit;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+ul {
+	margin-bottom :1rem;
+	padding:3px;
+	text-align: center;
+	border: 2px solid black;
+}
+
+.group-it{
+	width :70%;
+	margin:5px;
+	font-size: small;
+	padding : 3px;
+	border-radius: 8px;
+	background-color: black;
+	color: white;
 }
