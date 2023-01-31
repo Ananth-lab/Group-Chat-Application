@@ -179,8 +179,8 @@ h3 {
 	border-radius: .5rem;
 	border : 1px solid white;
 	width: 50vw;
-	background-color: inherit;
-	background-image: linear-gradient(rgb(7, 0, 0), rgb(45, 44, 44));
+	color:white;
+	background-image: linear-gradient(rgb(0, 0, 0), rgb(45, 44, 44));
 }
 
 .send-message-btn {
@@ -233,7 +233,6 @@ h3 {
 	color: white;
 	font-size: medium;
 	background-color: inherit;
-	cursor: pointer;
 	overflow: hidden;
 }
 
@@ -296,4 +295,8 @@ h2{
 	background-color: red;
 	color: #ffff;
 	float:right;
+}
+
+.add-user-form{
+	background-color: inherit;
 }

@@ -61,6 +61,7 @@ function getGroups() {
   axios.get(`http://localhost:3000/user/get-group?userId=${currentUserId}`, { headers: { "authorization": token } })
     .then(res => {
       res.data.groups.forEach(group => {
+        console.log(group)
         const groupContainer = document.querySelector(".group-container");
         const button = document.createElement("button");
         button.className = "group-list";
@@ -147,17 +148,6 @@ showGroup.addEventListener("click", (e) => {
           const li = document.createElement("li");
           li.className = "show-group-element";
           li.appendChild(document.createTextNode(group.groupname));
-          li.addEventListener("click", () => {
-            // join group logic
-            axios.post(`http://localhost:3000/user/join-group?groupid=${group.groupid}&userid=${currentUserId}`, {}, { headers: { "authorization": token } })
-              .then(res => {
-                alert(res.data.message);
-                location.reload();
-              })
-              .catch(err => {
-                
-              })
-          });
           ul.append(li)
         })
         showGroup.textContent = "Hide Groups";

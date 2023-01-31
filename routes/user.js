@@ -22,7 +22,7 @@ routes.use("/add-group",userAuthenticate.authenticate, groupchatController.addGr
 
 routes.get("/get-all-groups",userAuthenticate.authenticate, groupchatController.getAllGroups);
 
-routes.post("/join-group",userAuthenticate.authenticate, groupchatController.joinGroup);
+// routes.post("/join-group",userAuthenticate.authenticate, groupchatController.joinGroup);
 
 
 module.exports = routes;

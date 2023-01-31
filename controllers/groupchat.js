@@ -9,16 +9,12 @@ exports.chat = async (req, res, next) => {
     try {
         Group.findOne({ where: { groupid: req.query.groupid } })
             .then(group => {
-                //    console.log("group is=================================>", group)
                 User.findOne({ where: { id: req.user.id } })
                     .then(user => {
-                        // console.log("User is ==============================>",user)
                         Chat.create({
                             chat: req.body.msgInp
                         })
                             .then(chat => {
-                                //      console.log("Chat is =========================>",chat)
-                                // associate chat with group and user
                                 chat.addGroup(group);
                                 chat.addUser(user);
                                 return res.status(201).json({ message: "sent successfully", success: true, })
@@ -54,7 +50,6 @@ exports.getChat = async (req, res, next) => {
             return res.status(200).json({ chatList, message: "messages delivered successfully", success: true })
         }    }
     catch (error) {
-        console.log(error)
         return res.status(504).json({ message: error.message, success: false })
     }
 }
@@ -67,7 +62,7 @@ exports.getGroup = async (req, res, next) => {
     }
     catch (error) {
         console.log(error)
-        return res.status(504).json({ message: error, success: false })
+        return res.status(504).json({ message: error.message, success: false })
     }
 }
 
@@ -95,30 +90,6 @@ exports.getAllGroups = async (req, res, next) => {
     try {
         const groups = await Group.findAll();
         res.status(201).json({ groups, message: "groups selected successfully", success: true })
-    }
-    catch (error) {
-        console.log(error)
-        return res.status(504).json({ message: error, success: false })
-    }
-}
-
-
-exports.joinGroup = async (req, res, next) => {
-    try {
-        Group.findOne({ where: { groupid: req.query.groupid } })
-            .then(group => {
-                User.findOne({ where: { id: req.query.userid } })
-                    .then(user => {
-                        group.addUser(user)
-                            .then(() => {
-                                res.status(201).json({ message: "you are added to the group", success: true })
-                            })
-                            .catch(err => {
-                                console.error(err);
-                            });
-                    });
-            });
-
     }
     catch (error) {
         console.log(error)

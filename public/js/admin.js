@@ -6,7 +6,9 @@ const token = localStorage.getItem("token");
 
 const currentUserId = localStorage.getItem("userId");
 
-const currentGroupId = localStorage.getItem("currentGroup")
+const currentGroupId = localStorage.getItem("currentGroup");
+
+const addUserBtn = document.querySelector(".sub-button")
 
 window.addEventListener("DOMContentLoaded", (e) => {
     axios.get(`http://localhost:3000/admin/get-members?userId=${currentUserId}&groupId=${currentGroupId}`, { headers: { "authorization": token } })
@@ -29,16 +31,34 @@ window.addEventListener("DOMContentLoaded", (e) => {
                     li.append(btn)
                     memberContainer.append(li);
                     btn.addEventListener("click", (e) => {
-                        axios.delete(`http://localhost:3000/admin/remove-user?userId=${user.id}&groupId=${currentGroupId}`, {headers : {"authorization" : token}})
-                        .then(res => {
-                            alert("User removed");
-                            location.reload();
-                        })
+                        axios.delete(`http://localhost:3000/admin/remove-user?userId=${user.id}&groupId=${currentGroupId}`, { headers: { "authorization": token } })
+                            .then(res => {
+                                alert("User removed");
+                                location.reload();
+                            })
                     })
                 }
             });
         })
         .catch(err => {
-
+            console.log(err)
         })
 })
+
+
+addUserBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const details = {
+        uname : document.querySelector(".name").value,
+        uemail : document.querySelector(".email").value,
+        group : document.querySelector(".groupname").value
+    }
+    axios.post(`http://localhost:3000/admin/join-group`,details, { headers: { "authorization": token } })
+        .then(res => {
+            alert(res.data.message);
+            location.reload();
+        })
+        .catch(err => {
+            alert(err.response.data.message);
+        })
+});
