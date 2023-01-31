@@ -1,6 +1,6 @@
 const form = document.querySelector("#send-message-container");
 
-const chatContainer = document.querySelector(".chat-container");
+const chatContainer = document.querySelector(".chat-container-sub");
 
 const sendBtn = document.querySelector(".send-message-btn");
 
@@ -10,37 +10,19 @@ const currentUserId = localStorage.getItem("userId");
 
 const addGroup = document.querySelector(".add-group");
 
-const showGroup = document.querySelector(".show-groups")
+const showGroup = document.querySelector(".show-groups");
+
+const chatHead = document.querySelector(".chat-head");
 
 let localChat = [];
 
 let lastMsgId;
 
 function getMessages(groupId) {
-  // let messages = JSON.parse(localStorage.getItem("messages"));
-  // if (messages == undefined || messages.length == 0) {
-  //   lastMsgId = 0;
-  // }
-  // else {
-  //   lastMsgId = messages[messages.length - 1].id;
-  // }
   axios.get(`http://localhost:3000/user/get-chat?userId=${currentUserId}&groupId=${groupId}`, { headers: { "authorization": token } })
     .then(res => {
-      // const resArray = res.data.chatList;
-      // if (messages) {
-      //   localChat = messages.concat(resArray)
-      // }
-      // else {
-      //   localChat = localChat.concat(resArray)
-      // }
-
-      // localChat = localChat.slice(localChat.length - 10);
-
-      // const localStorageMessages = JSON.stringify(localChat);
-      // localStorage.setItem('messages', localStorageMessages);
       chatContainer.innerHTML = '';
       res.data.chatList.forEach(element => {
-        console.log(element)
         const date = new Date(element.createdAt);
         const timeString = date.toLocaleTimeString();
         if (currentUserId == element.users[0].id) {
@@ -85,8 +67,16 @@ function getGroups() {
         button.append(document.createTextNode(group.groupname));
         groupContainer.append(button);
         button.addEventListener("click", function () {
-          localStorage.setItem("currentGroup", group.groupid)
+          localStorage.setItem("currentGroup", group.groupid);
+          localStorage.setItem("currentGroupName", group.groupname);
+          chatHead.innerHTML = `<h2 style="display: inline-block; text-align: left; margin: 0; padding: 2rem;">${group.groupname}</h2>
+          ${group.adminId == currentUserId ? `<button class = "admin-dashboard-btn" style="display: inline-block; float: right; margin:2rem; padding:3px;border-radius :5px;">Admin DashBoard</button>` : ''}`;
           getMessages(group.groupid)
+          adminDashboardBtn = document.querySelector('.admin-dashboard-btn');
+          adminDashboardBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location = "./admin.html"
+          })
         });
       });
     })
@@ -109,7 +99,8 @@ addGroup.addEventListener("click", (e) => {
   if (groupname != null && groupdesc != null) {
     const groupDetails = {
       groupname,
-      groupdesc
+      groupdesc,
+      currentUserId
     }
     axios.post(`http://localhost:3000/user/add-group?userId=${currentUserId}`, groupDetails, { headers: { "authorization": token } })
       .then(res => {

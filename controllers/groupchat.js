@@ -9,19 +9,19 @@ exports.chat = async (req, res, next) => {
     try {
         Group.findOne({ where: { groupid: req.query.groupid } })
             .then(group => {
-            //    console.log("group is=================================>", group)
+                //    console.log("group is=================================>", group)
                 User.findOne({ where: { id: req.user.id } })
                     .then(user => {
-                       // console.log("User is ==============================>",user)
+                        // console.log("User is ==============================>",user)
                         Chat.create({
                             chat: req.body.msgInp
                         })
                             .then(chat => {
-                          //      console.log("Chat is =========================>",chat)
+                                //      console.log("Chat is =========================>",chat)
                                 // associate chat with group and user
                                 chat.addGroup(group);
                                 chat.addUser(user);
-                                return res.status(201).json({  message: "sent successfully", success: true, })
+                                return res.status(201).json({ message: "sent successfully", success: true, })
                             })
                             .catch(err => {
                                 console.error(err);
@@ -38,18 +38,6 @@ exports.chat = async (req, res, next) => {
 
 exports.getChat = async (req, res, next) => {
     try {
-        // const group = await Group.findByPk(groupId);
-        // const chats = await group.getChats();
-
-        // let chatList = await Chat.findAll({
-        // include: [
-        //     {
-        //         model: User,
-        //         attributes: ['id', 'name']
-        //     }
-        // ]
-        // });
-        // chatList = chatList.slice(req.query.lastmsgid, chatList.length);
         if (req.query.groupId == undefined) {
             throw new Error("No Group has been selected")
         }
@@ -63,11 +51,8 @@ exports.getChat = async (req, res, next) => {
                     }
                 ]
             });
-            //chatList = chatList.slice(req.query.lastmsgid, chatList.length);
             return res.status(200).json({ chatList, message: "messages delivered successfully", success: true })
-        }
-        //return res.status(200).json({ chatList, message: "messages delivered successfully", success: true })
-    }
+        }    }
     catch (error) {
         console.log(error)
         return res.status(504).json({ message: error.message, success: false })
@@ -91,9 +76,9 @@ exports.addGroup = async (req, res, next) => {
     try {
         const newGroup = await Group.create({
             groupname: req.body.groupname,
-            groupdescription: req.body.groupdesc
+            groupdescription: req.body.groupdesc,
+            adminId: req.body.currentUserId
         });
-
         const user = await User.findByPk(req.query.userId);
         await user.addGroup(newGroup);
         res.status(201).json({ message: "group created succusfully", success: true })

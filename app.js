@@ -8,6 +8,8 @@ const dotenv = require("dotenv")
 
 const userRoutes = require("./routes/user");
 
+const adminRoutes = require("./routes/admin");
+
 const User = require("./models/user");
 
 const Chat = require("./models/chat");
@@ -29,6 +31,8 @@ dotenv.config();
 app.use(bodyParser.json());
 
 app.use('/user', userRoutes);
+
+app.use("/admin", adminRoutes)
 
 Chat.belongsToMany(User, { through: 'chatuser', foreignKey: 'chatId' });
 User.belongsToMany(Chat, { through: 'chatuser', foreignKey: 'userId' });
