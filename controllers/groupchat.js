@@ -1,8 +1,15 @@
+//const AWS = require("aws-sdk");
+
 const Chat = require("../models/chat");
 
 const User = require("../models/user");
 
 const Group = require("../models/group");
+
+// const s3 = new AWS.S3({
+//     accessKeyId: process.env.IAM_USER_KEY,
+//     secretAccessKey: process.env.IAM_USER_SECRET,
+// });
 
 
 exports.chat = async (req, res, next) => {
@@ -12,16 +19,17 @@ exports.chat = async (req, res, next) => {
                 User.findOne({ where: { id: req.user.id } })
                     .then(user => {
                         Chat.create({
-                            chat: req.body.msgInp
+                            chat: req.body.msgInp,
+                            userId: req.user.id
                         })
                             .then(chat => {
-                                chat.addGroup(group);
-                                chat.addUser(user);
-                                return res.status(201).json({ message: "sent successfully", success: true, })
+                                chat.setGroup(group);
+                                return res.status(201).json({ message: "sent successfully", success: true, });
                             })
                             .catch(err => {
                                 console.error(err);
                             });
+
                     });
             });
     }
@@ -29,6 +37,7 @@ exports.chat = async (req, res, next) => {
         return res.status(504).json({ message: "something went wrong", success: true })
     }
 }
+
 
 
 
@@ -45,10 +54,14 @@ exports.getChat = async (req, res, next) => {
                         model: User,
                         attributes: ['id', 'name']
                     }
+                ],
+                order: [
+                    ['createdAt', 'ASC']
                 ]
             });
             return res.status(200).json({ chatList, message: "messages delivered successfully", success: true })
-        }    }
+        }
+    }
     catch (error) {
         return res.status(504).json({ message: error.message, success: false })
     }

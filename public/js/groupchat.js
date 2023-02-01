@@ -25,12 +25,13 @@ function getMessages(groupId) {
       res.data.chatList.forEach(element => {
         const date = new Date(element.createdAt);
         const timeString = date.toLocaleTimeString();
-        if (currentUserId == element.users[0].id) {
+        console.log(element.user)
+        if (currentUserId == element.user.id) {
           const msgRight = document.createElement("div");
           msgRight.className = "message-right";
           const nameSpan = document.createElement("p");
           nameSpan.className = "name-span";
-          nameSpan.append(document.createTextNode(element.users[0].name))
+          nameSpan.append(document.createTextNode(element.user.name))
           msgRight.append(nameSpan)
           const timeSpan = document.createElement("p");
           timeSpan.className = "time-span";
@@ -43,7 +44,7 @@ function getMessages(groupId) {
           msgLeft.className = "message-left";
           const nameSpan = document.createElement("p");
           nameSpan.className = "name-span";
-          nameSpan.append(document.createTextNode(element.users[0].name))
+          nameSpan.append(document.createTextNode(element.user.name))
           msgLeft.append(nameSpan)
           const timeSpan = document.createElement("p");
           timeSpan.className = "time-span";
@@ -130,6 +131,7 @@ sendBtn.addEventListener("click", (e) => {
     })
 });
 
+  
 let isGroupShowing = false;
 
 showGroup.addEventListener("click", (e) => {
@@ -154,7 +156,7 @@ showGroup.addEventListener("click", (e) => {
         isGroupShowing = true;
       })
       .catch(err => {
-  
+        console.log(err)
       })
   }
 });

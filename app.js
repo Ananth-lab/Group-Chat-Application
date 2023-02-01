@@ -34,12 +34,13 @@ app.use('/user', userRoutes);
 
 app.use("/admin", adminRoutes)
 
-Chat.belongsToMany(User, { through: 'chatuser', foreignKey: 'chatId' });
-User.belongsToMany(Chat, { through: 'chatuser', foreignKey: 'userId' });
 
+Chat.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Chat, { foreignKey: 'userId' });
 
-Group.belongsToMany(Chat, { through: 'groupchat' });
-Chat.belongsToMany(Group, { through: 'groupchat' });
+Chat.belongsTo(Group, { foreignKey: 'groupId' });
+Group.hasMany(Chat, { foreignKey: 'groupId' });
+
 
 User.belongsToMany(Group, { through: 'usergroup', foreignKey: 'userId' });
 Group.belongsToMany(User, { through: 'usergroup', foreignKey: 'groupId' });
