@@ -9,10 +9,16 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 	color: #4d5a66;
-	background-color: rgba(3, 3, 123, 0.861);
+	background-color: rgba(110, 228, 255, 0.861);
 	background-size: cover;
 }
 
+.main-container{
+	font-family: 'Montserrat', sans-serif;
+	color: #4d5a66;
+	background-color: rgba(25, 3, 222, 0.861);
+	background-size: cover;
+}
 h1 {
 	text-align: center;
 	margin: 0.5rem auto;
@@ -21,6 +27,8 @@ h1 {
 	color: #000000;
 	padding-bottom: 1rem;
 }
+
+
 
 form {
 	max-width: 500px;
@@ -53,7 +61,8 @@ input {
 	height: 2rem;
 }
 
-.sub-button {
+.sub-button, .delete-group  {
+	overflow: hidden;
 	font-size: 16px;
 	display: block;
 	width: 30%;
@@ -67,6 +76,10 @@ input {
 	transition: all 250ms;
 }
 
+.delete-group {
+	margin-top : 35%;
+	background-color: rgba(211, 0, 0, 0.861);
+}
 
 a {
 	list-style: none;
@@ -85,6 +98,10 @@ a {
 .footer-links {
 	padding: 1%;
 	padding: 2rem 0;
+}
+
+.footer-heading{
+	color:red;
 }
 
 li {
@@ -123,7 +140,7 @@ h3 {
 }
 
 .group-container {
-	background-image: linear-gradient(rgb(105, 95, 214), rgb(7, 158, 192));
+	background-image: linear-gradient(rgb(8, 175, 38), rgb(7, 192, 50));
 	border-radius: 10px;
 	width: 20%;
 	overflow-y: auto;
@@ -139,7 +156,7 @@ h3 {
 
 .chat-head {
 	height: 15vh;
-	background-image: linear-gradient(rgb(3, 86, 229), rgb(243, 0, 0));
+	background-image: linear-gradient(rgb(255, 8, 8), rgb(250, 25, 25));
 }
 
 .message-left {
@@ -169,6 +186,7 @@ h3 {
 
 .send-message{
 	display: inline-block;
+	visibility:hidden ;
 	position : absolute;
 	bottom: 8.2%;
 	display: flex;
@@ -177,10 +195,7 @@ h3 {
 #messageInp {
 	margin: auto;
 	border-radius: .5rem;
-	border : 1px solid white;
-	width: 50vw;
-	color:white;
-	background-image: linear-gradient(rgb(0, 0, 0), rgb(45, 44, 44));
+	width: 55vw;
 }
 
 .send-message-btn {
@@ -213,41 +228,55 @@ h3 {
 }
 
 .group-list {
-	width: 90%;
+	width: 100%;
 	height: 1.5rem;
-	margin-bottom: .5rem;
-	font-size: medium;
-	background-color: inherit;
+	margin-bottom: 1px;
+	font-size: large;
+	background-color: rgb(255, 255, 255);
+	border-radius: 2px;
 	cursor: pointer;
-	border: 2px solid black;
+	border: none;
 	overflow: hidden;
 }
 
+.add-group{
+	position: absolute;
+	bottom: 20%;
+	left : 15%;
+	overflow: hidden;
+	font-size: 16px;
+	display: block;
+	padding : 1rem;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: rgba(255, 4, 4, 0.861);
+	cursor: pointer;
+	text-align: center;
+	transition: all 250ms;
+}
 
 .show-group-element {
 	width: 90%;
+	text-align: left;
 	height: 1.5rem;
 	margin: 0;
 	padding: 0;
 	display: block;
-	color: white;
-	font-size: medium;
+	color: rgb(8, 0, 255);
+	font-size: large;
 	background-color: inherit;
 	overflow: hidden;
 }
 
-ul {
-	margin-bottom: 1rem;
-	padding: 3px;
-	text-align: center;
-	border: 2px solid black;
+.join-btn{
+	float: right;
 }
 
 .group-it {
 	width: 70%;
 	margin: 5px;
 	font-size: small;
-	padding: 3px;
+	padding: .5rem;
 	border-radius: 8px;
 	background-color: black;
 	color: white;

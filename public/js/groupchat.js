@@ -14,18 +14,37 @@ const showGroup = document.querySelector(".show-groups");
 
 const chatHead = document.querySelector(".chat-head");
 
+const sendMsgDiv = document.querySelector(".send-message")
+
 let localChat = [];
 
 let lastMsgId;
 
 function getMessages(groupId) {
-  axios.get(`http://localhost:3000/user/get-chat?userId=${currentUserId}&groupId=${groupId}`, { headers: { "authorization": token } })
+  let messages = JSON.parse(localStorage.getItem(`messages${groupId}`));
+  if(messages == undefined || messages.length == 0){
+    lastMsgId = 0;
+  }
+  else {
+    lastMsgId = messages[messages.length - 1].id;
+  }
+
+  axios.get(`http://localhost:3000/user/get-chat?userId=${currentUserId}&groupId=${groupId}&lastmsgid=${lastMsgId}`, { headers: { "authorization": token } })
     .then(res => {
+      const resList = res.data.chatList;
+      if(messages){
+        localChat = messages.concat(resList)
+      }
+      else {
+        localChat = localChat.concat(resList)
+      }
+      localChat = localChat.slice(localChat.legth - 10);
+      const localStorageMessages = JSON.stringify(localChat);
+      localStorage.setItem(`messages${groupId}`, localStorageMessages);
       chatContainer.innerHTML = '';
-      res.data.chatList.forEach(element => {
+      localChat.forEach(element => {
         const date = new Date(element.createdAt);
         const timeString = date.toLocaleTimeString();
-        console.log(element.user)
         if (currentUserId == element.user.id) {
           const msgRight = document.createElement("div");
           msgRight.className = "message-right";
@@ -62,13 +81,13 @@ function getGroups() {
   axios.get(`http://localhost:3000/user/get-group?userId=${currentUserId}`, { headers: { "authorization": token } })
     .then(res => {
       res.data.groups.forEach(group => {
-        console.log(group)
         const groupContainer = document.querySelector(".group-container");
         const button = document.createElement("button");
         button.className = "group-list";
         button.append(document.createTextNode(group.groupname));
         groupContainer.append(button);
         button.addEventListener("click", function () {
+          sendMsgDiv.style.visibility = "visible";
           localStorage.setItem("currentGroup", group.groupid);
           localStorage.setItem("currentGroupName", group.groupname);
           chatHead.innerHTML = `<h2 style="display: inline-block; text-align: left; margin: 0; padding: 2rem;">${group.groupname}</h2>
@@ -141,17 +160,32 @@ showGroup.addEventListener("click", (e) => {
     showGroup.textContent = "Show Groups";
     isGroupShowing = false;
   } else {
-    axios.get(`http://localhost:3000/user/get-all-groups`, { headers: { "authorization": token } })
+    axios.post(`http://localhost:3000/user/get-all-groups?userid=${currentUserId}`,{}, { headers: { "authorization": token } })
       .then(res => {
         const ul = document.querySelector("ul");
         ul.style.display = "block";
         ul.innerHTML = "";  
-        res.data.groups.forEach(group => {
+        res.data.groupsNotBelongingToUser.forEach(group => {
           const li = document.createElement("li");
           li.className = "show-group-element";
           li.appendChild(document.createTextNode(group.groupname));
-          ul.append(li)
-        })
+          const btn = document.createElement("button");
+          btn.appendChild(document.createTextNode("Join"));
+          btn.className = "join-btn";
+          li.appendChild(btn)
+          ul.append(li);
+          btn.addEventListener("click", (e)=> {
+            e.preventDefault();
+            axios.post(`http://localhost:3000/user/join-group?userid=${currentUserId}&groupid=${group.groupid}`,{}, {headers : {"authorization" : token}})
+            .then(result => {
+              alert(result.data.message);
+              location.reload();
+            })
+            .catch(err => {
+
+            })
+          })
+        });
         showGroup.textContent = "Hide Groups";
         isGroupShowing = true;
       })

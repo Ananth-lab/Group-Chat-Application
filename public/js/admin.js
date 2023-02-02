@@ -8,7 +8,22 @@ const currentUserId = localStorage.getItem("userId");
 
 const currentGroupId = localStorage.getItem("currentGroup");
 
-const addUserBtn = document.querySelector(".sub-button")
+const addUserBtn = document.querySelector(".sub-button");
+
+const deleteBtn = document.querySelector(".delete-group");
+
+
+deleteBtn.addEventListener("click" , (e) => {
+    e.preventDefault();
+    axios.post(`http://localhost:3000/admin/delete-group?groupid=${currentGroupId}`, {}, {headers : {"authorization" : token}})
+    .then(res => {
+        alert(res.data.message);
+        window.location = "./groupchat.html"
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
 
 window.addEventListener("DOMContentLoaded", (e) => {
     axios.get(`http://localhost:3000/admin/get-members?userId=${currentUserId}&groupId=${currentGroupId}`, { headers: { "authorization": token } })

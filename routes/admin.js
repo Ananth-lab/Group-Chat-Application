@@ -12,4 +12,6 @@ routes.delete("/remove-user",userAuthenticate.authenticate, adminController.remo
 
 routes.post("/join-group",userAuthenticate.authenticate, adminController.joinGroup);
 
+routes.post("/delete-group",userAuthenticate.authenticate, adminController.deleteGroup);
+
 module.exports = routes;

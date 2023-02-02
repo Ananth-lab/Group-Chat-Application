@@ -9,28 +9,34 @@
     <title>Group chat</title>
 </head>
 
-<body>
-    <form action="submit" method = "POST">
+<body class = "main-container">
+    <form action="submit" method="POST">
         <h1>Signup</h1>
         <p>Please fill this form to create an account</p>
-        <input type = "text" id = "uname" name = "uname" required="required" placeholder="name">
-        <input type = "number" id = "cnumber" name = "cnumber" required="required" placeholder="phone number">
-        <input type = "email" id = "email"  name = "email" required="required" placeholder="Email">
-        <input type = "password" id = "password" name = "password" required="required" placeholder="password">
-        <button type = "submit" id = "signUp-btn" class="sub-button">Sign Up</button>
-        <p id = "error"></p>
-        <a href="./login.html"  id = "switch">Existing User - Login</a>
+        <input type="text" id="uname" name="uname" required="required" placeholder="name">
+        <input type="number" id="cnumber" name="cnumber" required="required" placeholder="phone number">
+        <input type="email" id="email" name="email" required="required" placeholder="Email">
+        <input type="password" id="password" name="password" required="required" placeholder="password">
+        <button type="submit" id="signUp-btn" class="sub-button">Sign Up</button>
+        <p id="error"></p>
+        <a href="./login.html" id="switch">Existing User - Login</a>
     </form>
     <footer class="footer">
-        <ul class = "footer-links">
-            <li><a class ="footer-a" href="https://github.com/Ananth-lab"><img src="./../Assets/github-big-logo.png" alt=""></a></li>
-            <li><a class ="footer-a" href="https://twitter.com/anantharaj_bhat"><img src="./../Assets/twitter.png" alt=""></a></li>
-            <li><a class ="footer-a" href="https://www.linkedin.com/in/anantharaja-bhat-b-0bb8b9176/"><img src="./../Assets/linkedin.png" alt=""></a></li>
-            <li><a class ="footer-a" href="https://anantharaja-portfolio.netlify.app/"><img src="./../Assets/portfolio.png" alt=""></a></li>
+        <ul class="footer-links">
+            <h3 class="footer-heading">Visit my profiles</h3>
+            <li><a class="footer-a" href="https://github.com/Ananth-lab"><img src="./../Assets/github-big-logo.png"
+                        alt=""></a></li>
+            <li><a class="footer-a" href="https://twitter.com/anantharaj_bhat"><img src="./../Assets/twitter.png"
+                        alt=""></a></li>
+            <li><a class="footer-a" href="https://www.linkedin.com/in/anantharaja-bhat-b-0bb8b9176/"><img
+                        src="./../Assets/linkedin.png" alt=""></a></li>
+            <li><a class="footer-a" href="https://anantharaja-portfolio.netlify.app/"><img
+                        src="./../Assets/portfolio.png" alt=""></a></li>
         </ul>
     </footer>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../js/signup.js"></script>
 </body>
+
 </html>

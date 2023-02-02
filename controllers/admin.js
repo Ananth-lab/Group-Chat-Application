@@ -55,7 +55,18 @@ exports.joinGroup = async (req, res, next) => {
         }
     }
     catch (error) {
-        console.log(error)
+        return res.status(504).json({ message: error.message, success: false })
+    }
+}
+
+
+exports.deleteGroup = async (req, res, next) => {
+    try {
+        const group = await Group.findByPk(req.query.groupid);
+        await group.destroy();
+        return res.status(201).json({ message: "Group deleted successfully", success: true })
+    }
+    catch (error) {
         return res.status(504).json({ message: error.message, success: false })
     }
 }

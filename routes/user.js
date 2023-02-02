@@ -20,7 +20,9 @@ routes.get("/get-group",userAuthenticate.authenticate, groupchatController.getGr
 
 routes.use("/add-group",userAuthenticate.authenticate, groupchatController.addGroup);
 
-routes.get("/get-all-groups",userAuthenticate.authenticate, groupchatController.getAllGroups);
+routes.post("/join-group",userAuthenticate.authenticate, groupchatController.joinGroup);
+
+routes.post("/get-all-groups",userAuthenticate.authenticate, groupchatController.getAllGroups);
 
 // routes.post("/join-group",userAuthenticate.authenticate, groupchatController.joinGroup);
 

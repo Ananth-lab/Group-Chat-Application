@@ -1,16 +1,8 @@
-//const AWS = require("aws-sdk");
-
 const Chat = require("../models/chat");
 
 const User = require("../models/user");
 
 const Group = require("../models/group");
-
-// const s3 = new AWS.S3({
-//     accessKeyId: process.env.IAM_USER_KEY,
-//     secretAccessKey: process.env.IAM_USER_SECRET,
-// });
-
 
 exports.chat = async (req, res, next) => {
     try {
@@ -59,6 +51,7 @@ exports.getChat = async (req, res, next) => {
                     ['createdAt', 'ASC']
                 ]
             });
+            chatList = chatList.slice(req.query.lastmsgid, chatList.length);
             return res.status(200).json({ chatList, message: "messages delivered successfully", success: true })
         }
     }
@@ -71,7 +64,7 @@ exports.getGroup = async (req, res, next) => {
     try {
         const user = await User.findByPk(req.query.userId);
         const groups = await user.getGroups();
-        return res.status(201).json({ groups, message: "groups retrieved sucessfully", success: true })
+        return res.status(201).json({ groups, message: "groups retrieved successfully", success: true })
     }
     catch (error) {
         console.log(error)
@@ -89,7 +82,7 @@ exports.addGroup = async (req, res, next) => {
         });
         const user = await User.findByPk(req.query.userId);
         await user.addGroup(newGroup);
-        res.status(201).json({ message: "group created succusfully", success: true })
+        res.status(201).json({ message: "group created successfully", success: true })
 
     }
     catch (error) {
@@ -101,8 +94,32 @@ exports.addGroup = async (req, res, next) => {
 
 exports.getAllGroups = async (req, res, next) => {
     try {
+        const user = await User.findByPk(req.query.userid);
         const groups = await Group.findAll();
-        res.status(201).json({ groups, message: "groups selected successfully", success: true })
+        const userGroups = await user.getGroups();
+        const groupsNotBelongingToUser = groups.filter(group => {
+            let found = false;
+            userGroups.forEach(userGroup => {
+              if (group.groupid === userGroup.groupid) {
+                found = true;
+                return;
+              }
+            });
+            return !found;
+          });
+        return res.status(201).json({ groupsNotBelongingToUser, message: "groups retrieved successfully", success: true })
+    }
+    catch (error) {
+        return res.status(504).json({ message: error, success: false })
+    }
+}
+
+exports.joinGroup = async (req, res, next) => {
+    try {
+        const user = await User.findByPk(req.query.userid);
+        const group = await Group.findByPk(req.query.groupid);
+        await group.addUser(user);
+        res.status(201).json({ message: `Now you are a member of ${group.groupname}`, success: true })
     }
     catch (error) {
         console.log(error)
