@@ -14,7 +14,9 @@ const showGroup = document.querySelector(".show-groups");
 
 const chatHead = document.querySelector(".chat-head");
 
-const sendMsgDiv = document.querySelector(".send-message")
+const sendMsgDiv = document.querySelector(".send-message");
+
+const logOutBtn = document.querySelector("#logout-btn")
 
 let localChat = [];
 
@@ -108,7 +110,7 @@ function getGroups() {
 
 window.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
-  //setInterval(getMessages, 1000);
+  setInterval(getMessages, 1000);
   getGroups();
 
 });
@@ -194,3 +196,12 @@ showGroup.addEventListener("click", (e) => {
       })
   }
 });
+
+
+logOutBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if( window.confirm("are you sure?")){
+    localStorage.clear();
+    window.location = "./login.html";
+  }
+})

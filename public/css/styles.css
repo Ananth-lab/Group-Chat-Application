@@ -101,7 +101,7 @@ a {
 }
 
 .footer-heading{
-	color:red;
+	color:rgb(129, 129, 129);
 }
 
 li {
@@ -209,6 +209,7 @@ h3 {
 	color: white;
 }
 
+
 .name-span {
 	display: block;
 	text-align: left;
@@ -239,7 +240,8 @@ h3 {
 	overflow: hidden;
 }
 
-.add-group{
+
+.add-group, #logout-btn{
 	position: absolute;
 	bottom: 20%;
 	left : 15%;
@@ -253,6 +255,12 @@ h3 {
 	cursor: pointer;
 	text-align: center;
 	transition: all 250ms;
+}
+
+#logout-btn {
+	position: absolute;
+	bottom: 10%;
+	width :160px;
 }
 
 .show-group-element {
@@ -286,7 +294,6 @@ h2{
 	text-align: center;
 	color : white;
 }
-
 
 .container-main-admin--approve{
 	width:30%;
